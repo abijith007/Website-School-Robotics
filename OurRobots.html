@@ -1,0 +1,410 @@
+<html>
+
+
+
+
+<head>
+  
+ <link rel="stylesheet" href="styles.css">
+   
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript">
+</script>
+  
+ <script src="script.js">
+</script>
+ 
+ <link rel="stylesheet" href="slide.css">
+ <link rel="shortcut icon" href=".\favicon.ico">
+<title>
+Our Robots
+</title>
+
+
+</head>
+
+
+
+<body>
+
+
+
+
+<!--Simply copy and paste into <BODY>  
+     Just above the </BODY> tag. -->
+
+<SCRIPT type="text/javascript">
+/*
+Snow Fall 1 - no images - Java Script
+Visit http://rainbow.arch.scriptmania.com/scripts/
+  for this script and many more
+*/
+
+// Set the number of snowflakes (more than 30 - 40 not recommended)
+var snowmax=35
+
+// Set the colors for the snow. Add as many colors as you like
+var snowcolor=new Array("#aaaacc","#ddddff","#ccccdd","#f3f3f3","#f0ffff")
+
+// Set the fonts, that create the snowflakes. Add as many fonts as you like
+var snowtype=new Array("Times","Arial","Times","Verdana")
+
+// Set the letter that creates your snowflake (recommended: * )
+var snowletter="*"
+
+// Set the speed of sinking (recommended values range from 0.3 to 2)
+var sinkspeed=0.6
+
+// Set the maximum-size of your snowflakes
+var snowmaxsize=40
+
+// Set the minimal-size of your snowflakes
+var snowminsize=10
+
+// Set the snowing-zone
+// Set 1 for all-over-snowing, set 2 for left-side-snowing
+// Set 3 for center-snowing, set 4 for right-side-snowing
+var snowingzone=1
+
+///////////////////////////////////////////////////////////////////////////
+// CONFIGURATION ENDS HERE
+///////////////////////////////////////////////////////////////////////////
+
+
+
+// Do not edit below this line
+var snow=new Array()
+var marginbottom
+var marginright
+var timer
+var i_snow=0
+var x_mv=new Array();
+var crds=new Array();
+var lftrght=new Array();
+var browserinfos=navigator.userAgent
+var ie5=document.all&&document.getElementById&&!browserinfos.match(/Opera/)
+var ns6=document.getElementById&&!document.all
+var opera=browserinfos.match(/Opera/)
+var browserok=ie5||ns6||opera
+
+function randommaker(range) {
+        rand=Math.floor(range*Math.random())
+    return rand
+}
+
+function initsnow() {
+        if (ie5 || opera) {
+                marginbottom = document.body.scrollHeight
+                marginright = document.body.clientWidth-15
+        }
+        else if (ns6) {
+                marginbottom = document.body.scrollHeight
+                marginright = window.innerWidth-15
+        }
+        var snowsizerange=snowmaxsize-snowminsize
+        for (i=0;i<=snowmax;i++) {
+                crds[i] = 0;
+            lftrght[i] = Math.random()*15;
+            x_mv[i] = 0.03 + Math.random()/10;
+                snow[i]=document.getElementById("s"+i)
+                snow[i].style.fontFamily=snowtype[randommaker(snowtype.length)]
+                snow[i].size=randommaker(snowsizerange)+snowminsize
+                snow[i].style.fontSize=snow[i].size+'px';
+                snow[i].style.color=snowcolor[randommaker(snowcolor.length)]
+                snow[i].style.zIndex=1000
+                snow[i].sink=sinkspeed*snow[i].size/5
+                if (snowingzone==1) {snow[i].posx=randommaker(marginright-snow[i].size)}
+                if (snowingzone==2) {snow[i].posx=randommaker(marginright/2-snow[i].size)}
+                if (snowingzone==3) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/4}
+                if (snowingzone==4) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/2}
+                snow[i].posy=randommaker(2*marginbottom-marginbottom-2*snow[i].size)
+                snow[i].style.left=snow[i].posx+'px';
+                snow[i].style.top=snow[i].posy+'px';
+        }
+        movesnow()
+}
+
+function movesnow() {
+        for (i=0;i<=snowmax;i++) {
+                crds[i] += x_mv[i];
+                snow[i].posy+=snow[i].sink
+                snow[i].style.left=snow[i].posx+lftrght[i]*Math.sin(crds[i])+'px';
+                snow[i].style.top=snow[i].posy+'px';
+
+                if (snow[i].posy>=marginbottom-2*snow[i].size || parseInt(snow[i].style.left)>(marginright-3*lftrght[i])){
+                        if (snowingzone==1) {snow[i].posx=randommaker(marginright-snow[i].size)}
+                        if (snowingzone==2) {snow[i].posx=randommaker(marginright/2-snow[i].size)}
+                        if (snowingzone==3) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/4}
+                        if (snowingzone==4) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/2}
+                        snow[i].posy=0
+                }
+        }
+        var timer=setTimeout("movesnow()",50)
+}
+
+for (i=0;i<=snowmax;i++) {
+        document.write("<span id='s"+i+"' style='position:absolute;top:-"+snowmaxsize+"'>"+snowletter+"</span>")
+}
+if (browserok) {
+        window.onload=initsnow
+}
+
+
+</SCRIPT>
+
+
+
+
+
+
+<style>
+
+
+
+
+body {  background-image:url(bg1.jpg);
+   
+	background-repeat:no-repeat;
+
+	background-size:cover;
+background-attachment:fixed;
+}
+
+
+</style>
+
+
+
+<br>
+
+<div>
+
+
+<img src="robotlogo.jpg" height=100px width=300px align="left">
+
+<img src="giphy (1).gif" height=100 width=300 align=right>
+
+<br><br>
+
+
+<font face="Castellar" color=gold size=10> <b>
+&nbsp&nbsp&nbsp Robotics School 
+ </b>
+ </font>
+
+</div> 
+
+<br><br>
+
+<div id='cssmenu'>
+<ul>
+   <li class='active'><a href="RoboTechSchool.html">Home</a></li>
+   <li><a href="OurRobots.html">Our Robots</a></li>
+   <li><a href="Facilities.html">Facilities</a></li>
+   <li><a href="Admission.html">Admission</a></li>
+   <li><a href="AboutUs.html">About Us</a></li>
+   <li><a href="ContactUs.html">Contact Us</a></li>
+</ul>
+</div>
+
+<br><br><br>
+
+<p align=left><font size=7 color=white><b> iSobot </b></font></p>
+
+
+<div class="bss-slides num1" tabindex="1" autofocus="autofocus">
+<figure> <img src="iSobot.jpg" height=300px width=500px/></figure>
+<figure> <img src="iSobot1.jpg" height=300px width=500px/></figure>
+<figure> <img src="iSobot2.jpg" height=300px width=500px/></figure>
+<figure> <img src="iSobot3.jpg" height=300px width=500px/></figure>
+</div>
+  
+
+
+<script src="slideShow.js">
+</script>
+<script>
+var opts = {auto : {
+speed : 3500, pauseOnHover : false}, fullScreen : false, swipe : true
+};
+makeBSS('.num1', opts);
+
+
+
+
+</script>
+
+
+
+<br><br>
+
+
+<div align="justify" style=width:50%>
+<font color=white size=5 face="Maiandra GD">
+An incredible humanoid robot, I- Sobot is one of the smallest humanoid robots, with a height of just 6.5 inches and a weight of
+ 12 ounces. The ‘Robot of 2008' winner in Japan’s Ministry of Economy, Trade and Industry (METI). 
+ It has become the most-produced robot in the world. Its advanced technology, together with the entertainment value it offers, 
+ are based primarily on its 17 miniature servo motors. This small robot can walk, play air guitar, and perform about 200 moves. 
+ This robot uses the gyro sensors for balancing, and can be controlled by either remote control or voice commands.
+ </font>
+
+
+  <br><br>
+
+
+
+  
+ <object class="BLOGGER-youtube-video" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+ codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" 
+ data-thumbnail-src="https://ytimg.googleusercontent.com/vi/HNU8VqJv9iI/0.jpg" height="350" width="560">
+ <param name="movie" value="https://www.youtube.com/v/HNU8VqJv9iI?version=3&f=user_uploads&c=google-webdrive-0&app=youtube_gdata" />
+ <param name="bgcolor" value="#FFFFFF" /><param name="allowFullScreen" value="true" />
+ <embed width="560" height="350" src="https://www.youtube.com/v/HNU8VqJv9iI?version=3&f=user_uploads&c=google-webdrive-0&app=youtube_gdata" 
+ type="application/x-shockwave-flash" allowfullscreen="true"></embed></object>
+ 
+ <br><br><br><br><br><br>
+ 
+<p align=left><font size=7 color=white><b> PIBOT </b></font></p>
+
+  <div class="bss-slides num1" tabindex="1" autofocus="autofocus">
+
+
+<figure>
+ <img src="pibot.jpg" height=300px width=500px/> </figure>
+            
+<figure>
+ <img src="pibot1.png" height=300px width=500px/> </figure>
+            
+<figure>
+ <img src="pibot2.png" height=300px width=500px/> </figure>
+
+</div>
+  
+
+
+<script src="slideShow.js"></script>
+
+
+
+<script>
+var opts = {
+    auto : {
+        speed : 3500, 
+        pauseOnHover : false
+    },
+    fullScreen : false, 
+    swipe : true
+};
+makeBSS('.num1', opts);
+
+</script>
+ 
+
+
+
+<br><br>
+
+
+
+<font color=white size=5 face="Maiandra GD">
+PIBOT can take to the virtual skies with near perfect reaction times and near perfect inputs, meaning that this is probably a 
+better pilot than most, if not all actual pilots. Of course, that is right up until the moment when a situation is encountered 
+that he isn’t programmed for, but we all know it’s only a matter of time until the machines take over anyway.
+</font>
+
+
+
+<br><br>
+  
+
+<object class="BLOGGER-youtube-video" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+ codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" 
+ data-thumbnail-src="https://ytimg.googleusercontent.com/vi/CGEaOg0l_KA/0.jpg" height="350" width="560">
+ <param name="movie" value="https://www.youtube.com/v/CGEaOg0l_KA?version=3&f=user_uploads&c=google-webdrive-0&app=youtube_gdata" />
+ <param name="bgcolor" value="#FFFFFF" /><param name="allowFullScreen" value="true" />
+ 
+<embed width="560" height="350" src="https://www.youtube.com/v/CGEaOg0l_KA?version=3&f=user_uploads&c=google-webdrive-0&app=youtube_gdata" 
+ type="application/x-shockwave-flash" allowfullscreen="true"></embed>
+</object>
+
+
+
+
+
+<br><br><br><br><br><br>
+
+
+
+
+
+<p align=left><font size=7 color=white><b> Sodoku Solver Robot </b></font></p>
+<div class="bss-slides num1" tabindex="1" autofocus="autofocus">
+            
+<figure>
+<img src="sudoku1.jpg" height=300px width=500px/></figure>
+            
+<figure>
+<img src="sudoku2.jpg" height=300px width=500px/></figure>
+            
+<figure>
+<img src="sudoku3.jpg" height=300px width=500px/></figure>
+			
+                  
+</div>
+  
+
+<script src="slideShow.js"></script>
+<script>
+var opts = {
+    auto : {
+        speed : 3500, 
+        pauseOnHover : false
+    },
+    fullScreen : false, 
+    swipe : true
+};
+makeBSS('.num1', opts);
+
+</script>
+
+
+
+
+
+
+<br><br>
+
+
+<font color=white size=5 face="Maiandra GD">
+The robot performs a quick scan of the puzzle, sweeping the light sensor across the page to determine which cells are empty. 
+Once it takes account of the blank areas, it looks through all the non-empty cells pixel by pixel, eventually creating a digital 
+representation of the Sudoku page.  To determine the digits on each square, it cleans up the scanned image, removes isolated blotches, 
+thins the lines, determines the width, counts the tips and finds their direction.
+</font>
+ 
+
+<br><br>
+ 
+ 
+
+<object class="BLOGGER-youtube-video" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+ codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" 
+ data-thumbnail-src="https://ytimg.googleusercontent.com/vi/Mp8Y2yjV4fU/0.jpg" height="350" width="560">
+ <param name="movie" value="https://www.youtube.com/v/Mp8Y2yjV4fU?version=3&f=user_uploads&c=google-webdrive-0&app=youtube_gdata" />
+ <param name="bgcolor" value="#FFFFFF" /><param name="allowFullScreen" value="true" />
+ <embed width="560" height="350" src="https://www.youtube.com/v/Mp8Y2yjV4fU?version=3&f=user_uploads&c=google-webdrive-0&app=youtube_gdata" 
+ type="application/x-shockwave-flash" allowfullscreen="true"></embed>
+</object>
+ 
+
+
+</div>
+
+
+
+
+</body>
+
+
+
+
+</html>
